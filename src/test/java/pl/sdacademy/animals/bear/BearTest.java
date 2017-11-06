@@ -6,8 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class BearTest {
 
     @Test
-    void bearShouldBeAliveIfEatenWithin10Days() {
+    void bearShouldBeAliveIfHasEatenWithin10Days() {
         Bear bear = new BlackBear(1);
+        bear.eat();
 
         boolean result = bear.isAlive();
 
