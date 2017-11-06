@@ -21,4 +21,6 @@ class BearSpec extends Specification {
         testBear << [new BlackBear(5), new PolarBear(20)]
     }
 
+//    def "Bear should "
+
 }
