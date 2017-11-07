@@ -40,8 +40,8 @@ public abstract class Bear implements Animal {
         this.weight = getWeight() + foodAmount;
     }
 
-    public void drinkWater(int waterWeight){
-        this.weight = getWeight() + (waterWeight*75)/100;
+    public void drinkWater(double waterWeight){
+        this.weight = getWeight() + (waterWeight * 0.75);
     }
 
     @Override
