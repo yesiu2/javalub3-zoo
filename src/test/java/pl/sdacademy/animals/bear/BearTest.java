@@ -1,5 +1,6 @@
 package pl.sdacademy.animals.bear;
 
+import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class BearTest {
     @Test
     void feedingBearShouldSetTheDateOfTheLastMealForNow() {
         Bear bear = new BlackBear(1);
-        bear.eat();
+        bear.eat(5);
 
         assertThat(new Duration(bear.getLastMealTime(), DateTime.now()).isShorterThan(Duration.standardSeconds(1)))
                 .isTrue();
@@ -35,23 +36,6 @@ class BearTest {
         boolean result = bear.isAlive();
 
         assertThat(result).isFalse();
-    }
-
-    @Test
-    void feedingBearShouldSetTheDateOfTheLastMealForNow() {
-        Bear bear = new BlackBear(1);
-        bear.eat(5);
-
-        DateTime result = bear.getLastMealTime();
-
-        assertTrue(new Duration(result, DateTime.now()).isShorterThan(Duration.standardSeconds(1)));
-    }
-
-    @Test
-    void bearShouldNotBeAliveIfItHasNotEatenForMoreThan10Days() {
-        Bear bear = new BlackBear(2, new TestClock());
-
-        assertFalse(bear.isAlive());
     }
 
     @Test
@@ -75,4 +59,27 @@ class BearTest {
 
         assertTrue(result == 1.75);
     }
+
+    @Test
+    void bearsMassDecreaseAfterPooping() {
+        Bear bear = new BlackBear(1);
+
+        bear.poop();
+
+        double result = bear.getWeight();
+
+        assertThat(result).isEqualTo(0.95);
+    }
+
+    @Test
+    void bearIsHibernatingBecauseItsWinter() {
+        Bear bear = new BlackBear(1, new TestClock());
+
+
+        boolean b = bear.isHibernating();
+
+        assertThat(b).isTrue();
+    }
+
+
 }

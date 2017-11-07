@@ -9,4 +9,8 @@ public class TestClock implements Clock {
     public DateTime getCurrentTime() {
         return DateTime.now().plusDays(11);
     }
+
+    public DateTime getHibernateTime() {
+        return DateTime.now().withMonthOfYear(1);
+    }
 }
