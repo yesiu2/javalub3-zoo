@@ -12,7 +12,7 @@ class BearTest {
     @Test
     void bearShouldBeAliveIfHasEatenWithin10Days() {
         Bear bear = new BlackBear(1);
-        bear.eat();
+        bear.eat(5);
 
         boolean result = bear.isAlive();
 
@@ -22,7 +22,7 @@ class BearTest {
     @Test
     void feedingBearShouldSetTheDateOfTheLastMealForNow() {
         Bear bear = new BlackBear(1);
-        bear.eat();
+        bear.eat(5);
 
         DateTime result = bear.getLastMealTime();
 
@@ -34,5 +34,27 @@ class BearTest {
         Bear bear = new BlackBear(2, new TestClock());
 
         assertFalse(bear.isAlive());
+    }
+
+    @Test
+    void bearShouldIncreaseWeightAsMuchAsItEaten() {
+        Bear bear = new BlackBear(2);
+
+        bear.eat(5);
+
+        double result = bear.getWeight();
+
+        assertTrue(result == 7);
+    }
+
+    @Test
+    void bearShouldIncrease75PercentWaterWeightAfterDrink() {
+        Bear bear = new PolarBear(1);
+
+        bear.drinkWater(1);
+
+        double result = bear.getWeight();
+
+        assertTrue(result == 1.75);
     }
 }
